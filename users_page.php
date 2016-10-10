@@ -57,6 +57,7 @@ if(!$_SESSION['logged']){
 </div>
 <div class="w3-panel w3-padding-1"></div>
 <div align="right">
+<input class="w3-btn w3-lime" type="button" name="insert" value="Add New Professor" onClick="Javascript:window.location.href = 'insert.php';"/>
 <input class="w3-btn w3-green" type="submit" name="basic_search" value="Basic Search">
 </div>
 <div style="padding:5px"></div>
@@ -161,6 +162,8 @@ if(!$_SESSION['logged']){
 if (!isset($_GET['startrow']) or !is_numeric($_GET['startrow'])) {
 	//we give the value of the starting row to 0 because nothing was found in URL
 	$startrow = 0;
+	// if new search, reset the session infomation
+	$_SESSION['table_type']="";
 	//otherwise we take the value from the URL
 } else {
 	$startrow = (int)$_GET['startrow'];
@@ -197,10 +200,5 @@ echo '</div>';
 
 ?>
 </div>
-
-<div>
-<input class="w3-btn w3-green" type="button" name="insert" value="Add New Professor" onClick="Javascript:window.location.href = 'insert.php';"/>
-</div>
-
 </body>
 </html>
