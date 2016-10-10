@@ -1,0 +1,22 @@
+create database `jyyz-prof`;
+
+use jyyz-prof;
+
+create table basic (id int NOT NULL AUTO_INCREMENT primary key, name varchar(100), dept varchar(100), title varchar(50), office varchar(50), phone varchar(20), email varchar(50), photo varchar(200));
+
+LOAD DATA LOCAL INFILE 'basic.txt' INTO TABLE basic;
+
+create table research(id int NOT NULL AUTO_INCREMENT primary key, name varchar(50), area varchar(200));
+
+LOAD DATA LOCAL INFILE 'research.txt' INTO TABLE research;
+
+
+create table publication(id int NOT NULL AUTO_INCREMENT primary key, author varchar(50), paper varchar(500));
+LOAD DATA LOCAL INFILE 'publication.txt' INTO TABLE publication;
+
+create table academic(id int NOT NULL AUTO_INCREMENT primary key, name varchar(50), website varchar(200), resume varchar(200), scholar varchar(200), email varchar(50), education varchar(200));
+LOAD DATA LOCAL INFILE 'academic.txt' INTO TABLE academic;
+
+// cannot do because of the permission denied! CREATE TRIGGER academicTrig AFTER DELETE ON basic FOR EACH ROW BEGIN DELETE FROM academic WHERE academic.name = old.name AND academic.id = old.id;
+
+// cannot do because of the permission denied! CREATE TRIGGER basicTrig AFTER DELETE ON academic FOR EACH ROW BEGIN DELETE FROM basic WHERE basic.name = old.name AND basic.id = old.id;
